@@ -1,4 +1,4 @@
-// import { useState } from "react";
+import { useState } from "react";
 
 function Form() {
 	const quantityNum = [...Array(20)].map((_, i) => (
@@ -7,18 +7,28 @@ function Form() {
 		</option>
 	));
 
-  // const [input, setInput] = useState('')
+	const [name, setName] = useState("");
+	const [quantity, setQuantity] = useState(1);
 
-  // function handeInput() {
+	function handleSubmit(e) {
+		e.preventDefault();
 
-  // }
+		if (!name) return false;
+
+		const nextItem = { name, quantity, checked: false, id: Date.now() };
+		console.log(nextItem);
+		setName("");
+		setQuantity(1);
+	}
 
 	return (
-		<form className="add-form">
+		<form className="add-form" onSubmit={handleSubmit}>
 			<h3>Hari ini belanja apa kita?</h3>
 			<div>
-				<select>{quantityNum}</select>
-				<input type="text" placeholder="nama barang..." />
+				<select value={quantity} onChange={(e) => setQuantity(Number(e.target.value))}>
+					{quantityNum}
+				</select>
+				<input type="text" placeholder="nama barang..." value={name} onChange={(e) => setName(e.target.value)} />
 			</div>
 			<button>Tambah</button>
 		</form>
