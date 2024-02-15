@@ -29,7 +29,6 @@ function App() {
 
 	const [items, setItems] = useState(groceryItems);
 
-
 	function handleAddItems(item) {
 		setItems([...items, item])
 	}
@@ -38,11 +37,21 @@ function App() {
 		setItems((items) => items.filter((item) => item.id !== id))
 	}
 
+	function handleToggleCheckItem(id) {
+		const nextItems = items.map((item) => {
+			if (item.id === id) {
+				item.checked = !item.checked
+			}
+			return item;
+		})
+		setItems(nextItems)
+	}
+
 	return (
 		<div className="app">
 			<Header />
 			<Form onAddItem={handleAddItems} />
-			<GroceryList items={items} onDeleteItem={handleDeleteItem} />
+			<GroceryList items={items} onDeleteItem={handleDeleteItem} onToggleCheckItem={handleToggleCheckItem} />
 			<Footer />
 		</div>
 	);

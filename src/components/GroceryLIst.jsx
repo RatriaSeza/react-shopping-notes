@@ -1,11 +1,11 @@
-function GroceryList({ items, onDeleteItem }) {
+function GroceryList({ items, onDeleteItem, onToggleCheckItem }) {
 	
 	return (
 		<>
 			<div className="list">
 				<ul>
 					{items.map((item) => (
-						<Item item={item} key={item.id} onDeleteItem={onDeleteItem} />
+						<Item item={item} key={item.id} onDeleteItem={onDeleteItem} onToggleCheckItem={onToggleCheckItem} />
 					))}
 				</ul>
 			</div>
@@ -21,11 +21,11 @@ function GroceryList({ items, onDeleteItem }) {
 	);
 }
 
-function Item({ item, onDeleteItem }) {
+function Item({ item, onDeleteItem, onToggleCheckItem }) {
 
 	return (
 		<li key={item.id}>
-			<input type="checkbox" />
+			<input type="checkbox" checked={item.checked} onChange={() => onToggleCheckItem(item.id)} />
 			<span style={item.checked ? { textDecoration: "line-through" } : {}}>
 				{item.quantity} {item.name}
 			</span>
