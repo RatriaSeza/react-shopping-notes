@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Form() {
+function Form({ onAddItem }) {
 	const quantityNum = [...Array(20)].map((_, i) => (
 		<option key={i + 1} value={i + 1}>
 			{i + 1}
@@ -16,7 +16,9 @@ function Form() {
 		if (!name) return false;
 
 		const nextItem = { name, quantity, checked: false, id: Date.now() };
-		console.log(nextItem);
+
+		onAddItem(nextItem)
+
 		setName("");
 		setQuantity(1);
 	}
