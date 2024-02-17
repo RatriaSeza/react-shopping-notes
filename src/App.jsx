@@ -56,7 +56,7 @@ function App() {
 			<Header />
 			<Form onAddItem={handleAddItems} />
 			<GroceryList items={items} onDeleteItem={handleDeleteItem} onToggleCheckItem={handleToggleCheckItem} onClearItems={handleClearItems} />
-			<Footer />
+			<Footer items={items} />
 		</div>
 	);
 }
