@@ -47,11 +47,15 @@ function App() {
 		setItems(nextItems)
 	}
 
+	function handleClearItems() {
+		setItems([]);
+	}
+
 	return (
 		<div className="app">
 			<Header />
 			<Form onAddItem={handleAddItems} />
-			<GroceryList items={items} onDeleteItem={handleDeleteItem} onToggleCheckItem={handleToggleCheckItem} />
+			<GroceryList items={items} onDeleteItem={handleDeleteItem} onToggleCheckItem={handleToggleCheckItem} onClearItems={handleClearItems} />
 			<Footer />
 		</div>
 	);
